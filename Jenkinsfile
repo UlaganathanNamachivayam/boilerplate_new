@@ -1,27 +1,27 @@
 pipeline {
   environment {
-    registry = “coolbud/playground”
-    registryCredential = ‘playground_docker’
-    dockerImage = ‘’
+    registry = "coolbud/playground"
+    registryCredential = 'playground_docker'
+    dockerImage = ''
   }
   agent any
   stages {
-    stage(‘Checkout’) {
+    stage('Checkout') {
       steps {
         git "${git_url}"
       }
     }
-    stage(‘BuildingImage’) {
+    stage('BuildingImage') {
       steps{
         script {
-          def dockerImage = docker.build("${registry}:${env.BUILD_ID}")
+           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
-    stage(‘DeployingImage’) {
+    stage('DeployingImage') {
       steps{
         script {
-          docker.withRegistry( ‘’, registryCredential ) {
+          docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
         }

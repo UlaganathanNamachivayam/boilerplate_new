@@ -13,7 +13,7 @@ pipeline {
 			def customImage = docker.build("coolbud/playground")
 			echo 'Building the project'
 			customImage.inside{
-			sh('sample.sh')
+			sh('cp sample.sh /sample.sh && sh ./sample.sh')
 			}
 			  customImage.push("${userid}-${env.BUILD_NUMBER}")
 			 }

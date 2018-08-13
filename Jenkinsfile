@@ -6,19 +6,21 @@ pipeline {
 		 steps {	
 			git branch: 'master',
 			credentialsId: 'gitaccess',															
-			url: "${git_url}"
-		 }
-		}
-		stage('Building') {
-		 steps{  
-		  script { 	
-			def customImage = docker.build("${userid}:${env.BUILD_ID}")
+			url: "${git_url}",
+		   script { 	
+			  def customImage = docker.build("coolbud/playground")
 			echo 'Building the project'
 			customImage.inside{
 			sh('sample.sh')
 			}
-			customImage.push('latest')
-		 }
+			  customImage.push("${userid}-${env.BUILD_NUMBER}")
+			}
+		   }
+		}
+		stage('Testing') {
+		 steps{  
+		     shell ('echo "Image build and pushed to docker repository"')
+			 
 	   }
     }
   }	

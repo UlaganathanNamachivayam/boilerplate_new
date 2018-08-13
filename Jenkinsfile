@@ -10,7 +10,7 @@ pipeline {
 			checkout scm
 		}
 		stage('Testing') {
-		 steps{  
+		 steps {  
 		    script { 	
 			PRO_WORKSPACE = WORKSPACE
 			def customImage = docker.build("coolbud/playground")

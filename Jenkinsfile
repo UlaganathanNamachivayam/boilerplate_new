@@ -1,28 +1,25 @@
 pipeline {
 	agent { dockerfile true }
-	environment {
-		PRO_WORKSPACE = ""	
-	}
-
+	
 	stages {
-		stage('Checkout and Build') {
+		stage('Checkout') {
 		 steps {	
-			checkout scm
+			git branch: 'master',
+			credentialsId: 'gitaccess',															
+			url: "${git_url}"
+		 }
 		}
-		stage('Testing') {
-		 steps {  
-		    script { 	
-			PRO_WORKSPACE = WORKSPACE
-			def customImage = docker.build("coolbud/playground")
+		stage('Building') {
+		 steps{  
+		  script { 	
+			  def customImage = docker.build("coolbud/playground")
 			echo 'Building the project'
 			customImage.inside{
-			sh('cp sample.sh /sample.sh && sh ./sample.sh')
+			sh('cp sample.sh /sample.sh')
 			}
-			  customImage.push("${userid}-${env.BUILD_NUMBER}")
-			 }
-		  }
+			  customImage.push(coolbud/playground:"${userid}-${env.BUILD_NUMBER}")
+		 }
 	   }
     }
   }	
 }
-

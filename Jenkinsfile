@@ -17,7 +17,7 @@ pipeline {
 			customImage.inside{
 			sh('cp sample.sh /sample.sh')
 			}
-			  customImage.push(coolbud/playground:"${userid}-${env.BUILD_NUMBER}")
+			  customImage.push("coolbud/playground:${userid}-${env.BUILD_NUMBER}")
 		 }
 	   }
     }

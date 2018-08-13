@@ -11,14 +11,14 @@ pipeline {
         git "${git_url}"
       }
     }
-    stage(‘Building image’) {
+    stage(‘BuildingImage’) {
       steps{
         script {
           dockerImage = docker.build registry + “:$BUILD_NUMBER”
         }
       }
     }
-    stage(‘Deploy Image’) {
+    stage(‘DeployingImage’) {
       steps{
         script {
           docker.withRegistry( ‘’, registryCredential ) {

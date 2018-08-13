@@ -6,7 +6,7 @@ pipeline {
   }
   agent any
   stages {
-    stage(‘Cloning Git’) {
+    stage(‘Checkout’) {
       steps {
         git "${git_url}"
       }

@@ -8,7 +8,10 @@ pipeline {
 		stage('Checkout and Build') {
 		 steps {	
 			checkout scm
-		   script { 	
+		}
+		stage('Testing') {
+		 steps{  
+		    script { 	
 			PRO_WORKSPACE = WORKSPACE
 			def customImage = docker.build("coolbud/playground")
 			echo 'Building the project'
@@ -17,11 +20,7 @@ pipeline {
 			}
 			  customImage.push("${userid}-${env.BUILD_NUMBER}")
 			 }
-		    }
-		}
-		stage('Testing') {
-		 steps{  
-		    shell ('echo "Docker image is build and pushed"')
+		  }
 	   }
     }
   }	

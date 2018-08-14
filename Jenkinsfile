@@ -36,7 +36,7 @@ pipeline {
         steps{
           script {
             dockerImage.pull()
-            dockerImage.withRun('-p 80:80') {c -> sh 'sleep 600' }
+            dockerImage.withRun('-p 80:80') {c -> sh 'sleep 2m' }
           }
       }
     }

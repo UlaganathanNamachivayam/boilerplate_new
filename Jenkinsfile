@@ -36,7 +36,7 @@ pipeline {
         steps{
           script {
             dockerImage.pull()
-            docker.Image.withRun('-p 80:80')
+            dockerImage.withRun('-p 80:80')
           }
       }
     }

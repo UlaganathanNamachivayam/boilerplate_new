@@ -36,7 +36,10 @@ pipeline {
         steps{
           script {
             dockerImage.pull()
-            dockerImage.withRun('-p 80:80') {c -> sh 'while true do sleep 10; done'}
+            dockerImage.withRun('-p 80:80') {c -> sh 'while true 
+              do 
+                echo "infinite" 
+              done' }
           }
       }
     }

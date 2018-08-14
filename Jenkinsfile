@@ -19,9 +19,6 @@ pipeline {
       steps{
         script {
            dockerImage = docker.build registry + ":$BUILD_NUMBER"
-          dockerImage.inside {
-             sh 'cp -pr sample.sh /sample.sh && bash /.sample.sh'
-          }
         }
       }
     }

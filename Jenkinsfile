@@ -4,13 +4,17 @@ pipeline {
     registryCredential = 'playground_docker'
     dockerImage = ''
   }
+  
   agent any
+  
   stages {
+    
     stage('Checkout') {
       steps {
         git "${git_url}"
       }
     }
+    
     stage('BuildingImage') {
       steps{
         script {
@@ -18,6 +22,7 @@ pipeline {
         }
       }
     }
+    
     stage('PushingImage') {
       steps{
         script {
@@ -26,6 +31,7 @@ pipeline {
           }
         }
       }
+    }
       stage('DeployingImage') {
         steps{
           script {
@@ -33,7 +39,7 @@ pipeline {
           }
       }
     }
- 
+
   }
  }
-}
+

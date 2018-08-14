@@ -1,8 +1,8 @@
 #!/bin/bash
 
-apk -y update
-apk -y add openrc --no-cache
-apk -y add nginx
+apk update
+apk add openrc --no-cache
+apk add nginx
 adduser -D -g 'www' www
 mkdir /www
 chown -R www:www /var/lib/nginx

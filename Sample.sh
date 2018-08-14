@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apk -y update
+apk -y add openrc --no-cache
 apk -y add nginx
 adduser -D -g 'www' www
 mkdir /www

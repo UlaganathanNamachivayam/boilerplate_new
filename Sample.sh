@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "This is for testing" >> /etc/config
+echo "This is for testing second time" >> /etc/config

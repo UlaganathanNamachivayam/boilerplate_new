@@ -18,7 +18,7 @@ pipeline {
         }
       }
     }
-    stage('DeployingImage') {
+    stage('PushingImage') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
@@ -26,6 +26,13 @@ pipeline {
           }
         }
       }
+      stage('DeployingImage') {
+        steps{
+          script {
+            dockerImage.pull()
+          }
+      }
     }
+ 
   }
 }

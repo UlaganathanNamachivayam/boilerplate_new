@@ -52,4 +52,4 @@ cat << EOT >> /www/index.html
 </html>
 EOT
 
-rc-service nginx restart
+#rc-service nginx restart
